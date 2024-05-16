@@ -8,6 +8,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class SkillType extends AbstractType
 {
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('name', TextType::class);

@@ -11,10 +11,11 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class GroundCrewMemberNormalizer implements NormalizerInterface
 {
     /**
-     * @param GroundCrewMember   $object
      * @param array<string, int> $context
      *
      * @return array<string, int|string>
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function normalize(mixed $object, ?string $format = null, array $context = []): array
     {
@@ -28,12 +29,17 @@ class GroundCrewMemberNormalizer implements NormalizerInterface
 
     /**
      * @param array<string, int> $context
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof GroundCrewMember;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function getSupportedTypes(?string $format): array
     {
         return [
@@ -50,11 +56,12 @@ class GroundCrewMemberNormalizer implements NormalizerInterface
     {
         $normalizedCertifications = [];
 
+        /** @var Certification $certification */
         foreach ($certifications as $certification) {
             $normalizedCertifications[] = [
                 'name' => $certification->getName(),
-                'validFrom' => $certification->getValidFrom()->format('Y-m-d'),
-                'validUntil' => $certification->getValidUntil()->format('Y-m-d'),
+                'validFrom' => $certification->getValidFrom()?->format('Y-m-d'),
+                'validUntil' => $certification->getValidUntil()?->format('Y-m-d'),
             ];
         }
 

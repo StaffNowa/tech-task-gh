@@ -32,6 +32,10 @@ class TaskCompletionSubscriber implements EventSubscriberInterface
             throw new \RuntimeException('Task not found', Response::HTTP_BAD_REQUEST);
         }
 
+        if ($task->getFlight() === null) {
+            throw new \RuntimeException('Flight not found', Response::HTTP_BAD_REQUEST);
+        }
+
         foreach ($task->getFlight()->getGroundCrewMembers() as $groundCrewMember) {
             $certifications = $groundCrewMember->getCertifications();
             foreach ($certifications as $certification) {

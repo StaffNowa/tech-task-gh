@@ -45,7 +45,7 @@ class FlightService
     }
 
     /**
-     * @param array<string, int|string> $flightDetails
+     * @param array<mixed> $flightDetails
      */
     public function onFlightArrival(array $flightDetails): void
     {
